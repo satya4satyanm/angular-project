@@ -1,0 +1,244 @@
+{
+  "visit": "http://abc.go.com",
+  "matches": {
+    "http://abc.go.com/shows/$": {
+      "links": [
+        {
+          "type": "css selector",
+          "value": "[data-sm-type='show']",
+          "link": {
+            "type": "css selector",
+            "value": "a",
+            "attribute": "href"
+          }
+        }
+      ]
+    },
+    "http://abc.go.com/shows/.*/cast/.+": {
+      "fields": [
+        {
+          "name": "title",
+          "type": "css selector",
+          "value": "[class*='m-person-title']"
+        },
+        {
+          "name": "subtitle",
+          "type": "css selector",
+          "value": "[class*='m-person-subtitle']"
+        },
+        {
+          "name": "showName",
+          "type": "css selector",
+          "value": "[class='breadcrumb'] [itemprop='title']"
+        },
+        {
+          "name": "showUrl",
+          "type": "css selector",
+          "value": "[class='breadcrumb'] [itemprop='url']",
+          "attribute": "href"
+        },
+        {
+          "name": "pictureUrl",
+          "type": "css selector",
+          "value": "[data-m-type='person'] [class='web-source']",
+          "attribute": "srcset"
+        },
+        {
+          "name": "biography",
+          "type": "css selector",
+          "value": "[class*='expandable-section']",
+          "actions": [
+            {
+              "action": "click",
+              "type": "css selector",
+              "value": "[class='continue-reading']"
+            }
+          ]
+        }
+      ]
+    },
+    "http://abc.go.com/shows/.*/episode-guide/[^/]+/.*": {
+      "fields": [
+        {
+          "name": "name",
+          "type": "css selector",
+          "value": "[class='m-videoplayer-episode-title']"
+        },
+        {
+          "name": "description",
+          "type": "css selector",
+          "value": "[class^='m-videoplayer-summary']",
+          "actions": [
+            {
+              "action": "click",
+              "type": "css selector",
+              "value": "[class='continue-reading']"
+            }
+          ]
+        },
+        {
+          "name": "episodeNumber",
+          "type": "css selector",
+          "value": "[class='episode-number']"
+        },
+        {
+          "name": "seasonNumber",
+          "type": "css selector",
+          "value": "[class='season-number']"
+        },
+        {
+          "name": "duration",
+          "type": "regex",
+          "value": "<.*class=\"m-videoplayer-episodemeta.*\">[\\s]*(?P<duration>\\d{2}:\\d{2})"
+        },
+        {
+          "name": "availableFrom",
+          "type": "regex",
+          "value": "<.*class=\"m-videoplayer-episodemeta.*\">[\\s\\w\\d:|]*[\\s](?P<availableFrom>[\\d/]*)"
+        },
+        {
+          "name": "meta",
+          "type": "regex",
+          "value": "<.*class=\"m-videoplayer-episodemeta.*\">(?P<meta>[^<]*)"
+        },
+        {
+          "name": "showName",
+          "type": "css selector",
+          "value": "[class='breadcrumb'] [itemprop='title']"
+        },
+        {
+          "name": "showUrl",
+          "type": "css selector",
+          "value": "[class='breadcrumb'] [itemprop='url']",
+          "attribute": "href"
+        }
+      ]
+    },
+    "http://abc.go.com/shows/(.*)/episode-guide[/]?$": {
+      "links": [
+        {
+          "type": "css selector",
+          "value": "[class^='datg-select-custom-option']",
+          "link": {
+            "attribute": "data-value"
+          }
+        },
+        {
+          "type": "css selector",
+          "value": "[class^='m-episode-copy']",
+          "link": {
+            "type": "css selector",
+            "value": "a",
+            "attribute": "href"
+          }
+        }
+      ]
+    },
+    "http://abc.go.com/shows/(.*)/episode-guide/[^/]+[/]?": {
+      "links": [
+        {
+          "type": "css selector",
+          "value": "[class^='m-episode-copy']",
+          "link": {
+            "type": "css selector",
+            "value": "a",
+            "attribute": "href"
+          }
+        }
+      ]
+    },
+    "http://abc.go.com/shows/[\\w\\d-]*[/]?$": {
+      "links": [
+        {
+          "type": "css selector",
+          "value": "[class^='datg-select-custom-option']",
+          "link": {
+            "attribute": "data-value"
+          }
+        },
+        {
+          "type": "css selector",
+          "value": "[class='show-list-nav-item']",
+          "link": {
+            "type": "css selector",
+            "value": "a",
+            "attribute": "href"
+          }
+        },
+        {
+          "type": "css selector",
+          "value": "[data-sm-type='person']",
+          "link": {
+            "type": "css selector",
+            "value": "a",
+            "attribute": "href"
+          }
+        }
+      ]
+    },
+    "http://abc.go.com/shows/.*/news[/]?$": {
+      "links": [
+        {
+          "type": "css selector",
+          "value": "[class*='tile ']",
+          "link": {
+            "type": "css selector",
+            "value": "a",
+            "attribute": "href"
+          },
+          "actions": [
+            {
+              "action": "scrollDown",
+              "type": "css selector",
+              "value": "[data-m-name='footer_menu']"
+            }
+          ]
+        },
+        {
+          "type": "css selector",
+          "value": "[class*='pagination-right']",
+          "link": {
+            "type": "css selector",
+            "value": "a",
+            "attribute": "href"
+          }
+        }
+      ]
+    },
+    "http://abc.go.com/shows/.*/news/.+$": {
+      "fields": [
+        {
+          "name": "showName",
+          "type": "css selector",
+          "value": "[class='breadcrumb'] [itemprop='title']"
+        },
+        {
+          "name": "showUrl",
+          "type": "css selector",
+          "value": "[class='breadcrumb'] [itemprop='url']",
+          "attribute": "href"
+        },
+        {
+          "name": "title",
+          "type": "css selector",
+          "value": "[class*='module-title']"
+        },
+        {
+          "name": "by",
+          "type": "regex",
+          "value": "<.*class=\".*subheader.*\">By (?P<by>[^|]*)"
+        },
+        {
+          "name": "availableFrom",
+          "type": "regex",
+          "value": "<.*class=\".*subheader.*\">[^|]*\\|(?P<availableFrom>[^<]*)"
+        },
+        {
+          "name": "description",
+          "type": "css selector",
+          "value": "[class*='description']"
+        }
+      ]
+    }
+  }
+}

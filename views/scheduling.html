@@ -1,0 +1,289 @@
+ <div id="wrapper">
+
+       
+
+        <div id="page-wrapper">
+
+            <div class="container-fluid">
+			
+			
+			<div class="row">
+                    <div class="col-lg-12">                      
+                        <ol class="breadcrumb">
+                            <li>
+                                <i class="fa fa-home"></i> Scheduler
+                            </li>
+							
+                           
+                        </ol>
+                    </div>
+					
+                </div>
+				
+				
+				
+				<div class="row">
+                    <div class="col-lg-12">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+							<h3 class="panel-title">Scheduler</h3>
+							<span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
+							</div>
+						    <div class="panel-body">
+				
+				
+				
+				
+				
+				
+				
+<div class="row">
+   <div class="col-md-12">
+      <form class="form-horizontal">
+		
+		 <div class="form-group" id="formError">
+           
+           
+           
+			
+         </div>
+		 
+		<div class="form-group" ng-show="success">
+            <label class="col-lg-10 control-label"><div>Schedule data saved successfully.</div></label>
+         </div> 
+		<div class="form-group" ng-show="false">
+			<label class="col-lg-3 control-label">Crawler Definition : </label>
+			<div class="col-lg-4"><input disabled type="text" placeholder="Definition Name" class="form-control"  ng-model="schedulerData.crawlerName"> 
+
+			</div>
+		</div>
+		
+		 
+		<div class="form-group" ng-show="true">
+            <label class="col-lg-3 control-label">Start URL(S) : </label>
+            <div class="col-lg-5"><textarea  placeholder="---,----,---,---,---,---" class="form-control" ng-init="schedulerData.startUrl = ''" ng-model="schedulerData.startUrl" ng-change="startUrlChange()" ng-disabled="otherSource !=''"></textarea> 
+			
+			<label class="" ng-show="ConnectLink == false && schedulerData.startUrl == ''" style="color:red;">Start URL(S) is Mandatory(http://" or "https://" is required).</label>
+			<label class="" ng-show="startUrlFlag == false && otherSource ==''" style="color:red;">Please use valid Start URL(S)</label>
+			
+            </div>
+         </div> 
+		 
+		 
+		<div class="form-group" ng-show="true">
+		<label class="col-lg-3 control-label">URL Selector Pattern: </label>
+		<div class="col-lg-4">
+		   <select class="form-control" name="otherSource" ng-model="otherSource" ng-init="otherSource = ''" ng-change="otherSourceChange()" ng-disabled="schedulerData.startUrl !=''">
+			  <option value="" selected>Select</option>
+			  <option ng-repeat="value in UrlSelectordata track by $index" value="{{value}}" >{{value}}</option>			
+		   </select>
+		    
+			<label class="col-lg-10 control-label" ng-show="otherSource == '' && schedulerData.startUrl == ''" style="color:red;    margin-left: -20px;">URL Selector Pattern is Required.</label>	
+		
+		</div>
+		
+		</div>
+		 <div class="form-group" ng-show="ConnectLink !='others'">
+			
+		    <label class="col-lg-3 control-label">Definition : </label>
+			<div class="col-lg-4">
+			   <select class="form-control" name="DefinitionToLink" ng-init="DefinitionToLink = schedulerData.crawlerId" ng-model="DefinitionToLink" ng-change="DefinitionLinkChange()" disabled>
+				  
+				  <option ng-repeat="value in crawlerdata" value="{{value.config.definitionId}}" ng-selected="schedulerData.crawlerId == value.config.definitionId">{{value.config.definitionName}}</option>
+				 
+			   </select>
+			   <label class="col-lg-10 control-label" ng-show="DefinitionToLink == ''" style="color:red;    margin-left: -54px;">Definition To Link Required.</label>					   
+			</div>
+			<div class="col-lg-3"><button class="btn btn-primary btn-sm btn-green" ng-click="addNewChoice()"><strong>Add More</strong></button></div>
+			
+		 </div>	
+		
+		
+		 <fieldset  data-ng-repeat="choice in choices">
+			<div class="form-group">
+			
+		    <label class="col-lg-3 control-label">Definition To Link: </label>
+			<div class="col-lg-4">
+			   <select class="form-control" name="linkedCrawlerId" ng-model="choice.linkedCrawlerId" ng-change="DefinitionLinkAddChange($index)">
+				  
+				  <option ng-repeat="value in DefinitionToLinkList[$index]" value="{{value.definitionId}}">{{value.definitionName}}</option>
+				 
+			   </select>
+			  				   
+			</div>
+		
+		 </div>	
+		   <div class="form-group">
+			
+			<label class="col-lg-3 control-label">Links to Connect: </label>
+			<div class="col-lg-4">
+			<select class="form-control" name="LinkstoConnect" ng-init="LinkstoConnect = ''" ng-model="choice.urlMappedId" ng-change="LinksConnectAddChange($index)">
+			  
+			  <option  ng-repeat="value in LinksConnectList[$index]" value="{{value.id}}">{{value.id}}</option> 
+			 
+			</select>
+
+			</div>
+			<div class="col-lg-3"><button class="btn btn-primary btn-sm btn-danger" ng-show="$last" ng-click="removeChoice()">-</button></div>
+			
+			 
+		 </div>	
+	   </fieldset>
+	   <div class="form-group">
+	   <label class="col-lg-6 control-label" ng-show="fetchAssetResult == 'false'" style="color:red;margin-left: 0px;"> Please select valid defintion link!!!</label>
+	   </div>
+	
+		 <div class="form-group">
+            <label class="col-lg-3 control-label">Keep Up Mode: </label>
+            <div class="col-lg-8">
+				<input  type="checkbox" ng-model="keepupMode" ng-change="modeChange()" checked="">
+				<span>&nbsp;&nbsp; No of Pages: 
+			   <input  name="noOfPages" maxlength="2" size="2" min="1" max="99" type="number" ng-model="schedulerData.KeepupProperty.noOfPages" ng-disabled="!keepupMode" />&nbsp;&nbsp; Apply pagination limits at all depths : <input  type="checkbox" ng-model="schedulerData.KeepupProperty.depth" ng-init="" checked="" ng-disabled="!keepupMode">
+			   </span>
+				
+			</div>
+         </div>
+		
+         <div class="form-group">
+            <label class="col-lg-3 control-label">Recurrence: </label>
+            <div class="col-lg-4">
+               <select class="form-control" name="templates" ng-model="duration" ng-change="update()">
+                  <option value="" selected>Select</option>
+                  <option value="Daily">Daily</option>
+                  <option value="Weekly">Weekly</option>
+                  <option value="Monthly">Monthly</option>
+               </select>
+			    <label class="col-lg-10 control-label" ng-show="schedulerData.frequency.type==''" style="color:red;    margin-left: -72px;">Recurrence is Mandatory.</label>
+            </div>
+         </div>
+		 
+		 
+		 <div class="form-group" ng-show="duration=='Weekly'">
+            <label class="col-lg-3 control-label"></label>
+            <div class="col-lg-4">
+				<p ng-repeat="day in weekDays">
+				<label>
+					<input type="checkbox" value="{{day}}" ng-click="daySelected(day)"> {{day}}
+				</label>
+				</p>
+				 <label class="col-lg-12 control-label" ng-show="schedulerData.frequency.type=='Weekly' && schedulerData.frequency.weekDay.length==0" style="color:red;    margin-left: -60px;">Please select at least one week day.</label>
+            </div>
+         </div>		
+		
+		 
+		 <div class="form-group" ng-show="duration=='Daily'">
+            <label class="col-lg-3 control-label">Bypass Week End: </label>
+            <div class="col-lg-4">
+               <input type="checkbox" ng-model="schedulerData.frequency.bypassFlag">
+            </div>
+         </div>
+		 
+		 <div class="form-group" ng-show="duration=='Weekly' || duration=='Monthly'">
+            <label class="col-lg-3 control-label">Recurr: </label>
+            <div class="col-lg-4">
+               Every <input  name="durationName" maxlength="2" size="2" min="0" max="{{recurrMax}}" type="number"  ng-model="schedulerData.frequency.recurrence" />	{{durationName}}
+            </div>
+         </div>
+		 
+		 <div class="form-group">
+            <label class="col-lg-3 control-label">Start Date: </label>
+            <div class="col-lg-4"><input type="date"  name="startDate"  id="startDate"  class="form-control"  ng-model="startDate" ng-change="startdateChange()" min="2016-01-01" max="2100-01-01" disabled onkeydown="return false"> 
+		
+			<label class="col-lg-10 control-label" ng-show="schedulerData.startDate==null || schedulerData.startDate==''" style="color:red;    margin-left: -80px;">Start date is Mandatory.</label>
+            </div>
+			
+         </div>
+		  
+         <div class="form-group">
+            <label class="col-lg-3 control-label">Time to Schedule: <br/>{{timeZone + " "}}(24 hrs) </label>
+            <div class="col-lg-4">
+               <label class="col-lg-3 control-label">Hours: </label> 
+			   <!--input type="number" min="0" max="24" ng-model="hours" ng-change="hourChange()"--> 
+			   <input name="hours" id="hours" maxlength="2" size="2" min="00" max="24" type="number" ng-model="hours" ng-change="hourChange()" />
+			   <label class="col-lg-10 control-label" ng-show="hours == null" style="color:red;    margin-left: -34px;">Hours is Mandatory.</label>
+			   <br/><br/><br/>
+			   
+			
+               <label class="col-lg-3 control-label">Minutes: </label> 
+			  
+			   <input name="minutes" id="minutes" maxlength="2" size="2" min="00" max="59" type="number" ng-model="minutes" ng-change="hourChange()" />
+			   
+			   <label class="col-lg-10 control-label" ng-show="minutes == null" style="color:red;margin-left: -20px;">minutes is Mandatory.</label>
+			   <label class="col-lg-10 control-label" ng-show="hrMinFlag == false" style="color:red;margin-left: 0px;">Time should not be Past.</label>
+			  
+            </div>
+         </div>
+     
+         <div class="form-group">
+            <label class="col-lg-3 control-label" style="margin-top: -6px;">Respect robot text: </label>
+            <div class="col-lg-4"><input type="checkbox" ng-model="schedulerData.respectRobot" ng-change="RespectRobotChange()"></div>
+         </div>
+         <div class="form-group">
+            <label class="col-lg-3 control-label">  </label>
+            <div class="col-lg-4"><button class="btn btn-primary btn-sm btn-green" ng-click="sendData()"><strong>Save</strong></button></div>
+         </div>
+		 
+		
+		 
+		 
+      </form>
+   </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="modal fade" id="warningScheduling" >
+  <div class="modal-dialog" role="document">
+	<div class="modal-content">
+	  <div class="modal-header alert-danger">
+		<h5 class="modal-title">Crawler Scheduling Warning</h5>
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top: -15px;">
+		  <span aria-hidden="true">&times;</span>
+		</button>
+	  </div>
+	  <div class="modal-body">
+		<p class="red-color">
+			<b>{{SchedulingWarning}} </b>
+					
+		</p>
+	  </div>
+	  <div class="modal-footer">
+		
+		<button type="button" class="btn btn-primary btn-sm btn-green" data-dismiss="modal">Ok</button>
+	  </div>
+	</div>
+  </div>
+</div>
+
+	
+<div class="modal fade" id="successScheduling" >
+  <div class="modal-dialog" role="document">
+	<div class="modal-content">
+	  <div class="modal-header alert-success">
+		<h5 class="modal-title">{{schedulingSuccessTitle}}</h5>
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top: -15px;">
+		  <span aria-hidden="true">&times;</span>
+		</button>
+	  </div>
+	  <div class="modal-body">
+		<p class="">
+			<b>{{schedulingSuccessMsg}} </b>
+					
+		</p>
+	  </div>
+	  <div class="modal-footer">
+		
+		<button type="button" class="btn btn-primary btn-sm btn-green" ng-click="goBackTo()" data-dismiss="modal">Ok</button>
+	  </div>
+	</div>
+  </div>
+</div>
+
+<script type="text/javascript" src="resources/js/scheduling.js">
+
+</script>

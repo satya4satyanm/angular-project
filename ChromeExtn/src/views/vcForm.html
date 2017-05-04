@@ -1,0 +1,96 @@
+<html>
+<head>
+<link rel="stylesheet" href="../resources/css/vcForm.css" />
+</head>
+<body>
+
+<div ng-app="roviApp">
+<div ng-controller="vcFormController">
+<div class="">
+<div class="">
+<form class="form-horizontal" name="vcForm1">
+         <div class="form-group">
+            <label class="col-lg-3 control-label">Definition Title: </label>
+            <div class="col-lg-4"><input type="text" placeholder="Definition Title" class="form-control"  ng-model="title" />
+
+            </div>
+         </div>
+         <div class="form-group">
+                     <label class="col-lg-3 control-label">Type Of Definition: </label>
+                     <div class="col-lg-4">
+                       <select class="form-control" name="definitionType" ng-model="definitionType">
+                          <option value="login">Login</option>
+                          <option value="list">List</option>
+                          <option value="detail">Detail</option>
+                       </select>
+                   </div>
+                  </div>
+
+		 <div class="form-group">
+            <label class="col-lg-3 control-label">URL: </label>
+            <div class="col-lg-4"><input type="url" placeholder="URL" name="url1" class="form-control"  ng-model="url"  ng-blur="getProxies()" required />  "http://" or "https://" is required<br/>http://www.imdb.com
+
+            </div>
+         </div>
+         <div class="form-group" id="loginCheck">
+           <label class="col-lg-3 control-label">Login Required : </label>
+		         <div class="col-lg-3" style="margin-top: 10px;">
+			            <input  type="checkbox" ng-model="loginCheckbox.value1">
+			       </div>
+        </div>
+
+         <!--div class="form-group">
+            <label class="col-lg-3 control-label">Available templates for the URL: </label>
+            <div class="col-lg-4">
+               <select class="form-control" name="templates">
+                  <option value="tid001">Top 10 movies</option>
+                  <option value="tid002">All Events</option>
+                  <option value="tid003">Current Events</option>
+                  <option value="tid004">All Movies</option>
+               </select>
+            </div>
+         </div-->
+         <div class="form-group">
+            <label class="col-lg-3 control-label">Choose Proxy: </label>
+            <div class="col-lg-4">
+               <select class="form-control" name="proxy" id="proxy" ng-model="proxy">
+					<option ng-repeat="x in proxyList" value="{{x}}">{{x}}</option>
+               </select>
+
+            </div>
+			<div ng-show="loading == true"><i class="fa fa-spinner fa-spin"></i></div>
+         </div>
+         <div class="form-group">
+            <label class="col-lg-3 control-label">OR Enter Proxy Manually: </label>
+            <div class="col-lg-4"><input type="text" placeholder="Proxy" class="form-control" ng-model="proxy" /></div>
+         </div>
+         <!--div class="form-group">
+            <label class="col-lg-3 control-label">Site Credential: </label>
+            <div class="col-lg-2">
+               <input type="text" placeholder="Username" class="form-control" ng-model="siteUserName" />
+            </div>
+            <div class="col-lg-2">
+               <input type="password" placeholder="Password" class="form-control" ng-model="sitePassword" />
+			</div>
+    </div-->
+         <div class="form-group">
+            <label class="col-lg-3 control-label"></label>
+            <div class="col-lg-2">
+               <a class="btn btn-primary btn-sm btn-green" href="" ng-click="sendData()"><strong>Start</strong></a>
+			   <p style="color:red">{{vcFormeErrorMessage}}</p>
+            </div>
+         </div>
+      </form>
+</div>
+</div>
+</div>
+</div>
+
+<script src="../vendors/angular/angular.min.js"></script>
+<script src="../vendors/angular/angular-local-storage.min.js"></script>
+<script src="../core/factories/jsonServices.js"></script>
+<script src="../core/factories/userJourneyServices.js"></script>
+<script src="../core/factories/apiService.js"></script>
+<script src="../chrome-app.js"></script>
+</body>
+</html>

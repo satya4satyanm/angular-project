@@ -1,0 +1,66 @@
+<div id="wrapper">
+    <div id="page-wrapper">
+
+        <div class="container-fluid">
+
+            <!-- Page Heading -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <ol class="breadcrumb">
+                        <li>
+                            <i class="fa fa-home"></i> Crawler Management
+                        </li>
+                        <div class="pull-right">
+                            <a class="btn btn-primary btn-sm btn-green" href="#visualCrawler"><strong>New Definition</strong></a>
+                        </div>
+                    </ol>
+                </div>
+
+            </div>
+            <!-- /.row -->
+
+            <div class="row">
+                <div class="col-lg-6">
+
+                </div>
+                <div class="col-lg-6">
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Crawler Management</h3>
+                            <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
+                        </div>
+                        <div class="panel-body">
+                            <p id="Scheduled_Executions_message"></p>
+                            <div id="viewCMData" style="display:none;"></div>
+                            <table id="crawlerTable" class="table table-striped" datatable="ng" dt-options="vm.dtOptions" dt-instance="vm.dtInstance">
+                                <thead>
+                                    <tr>
+                                        <th width="60"></th>
+                                        <th width="260">Name</th>
+                                        <th width="160">Asset Type</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="value in crawlerdata track by $index">
+                                        <td><a class="green shortinfo" ng-click="crawledData(detail, $event)" title="Click to view more"><i class="fa fa-plus-circle"></a></td>
+                                        <td>{{value.config.definitionName}}</td>
+                                        <td>{{assetType[$index]}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>

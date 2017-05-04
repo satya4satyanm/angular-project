@@ -1,0 +1,305 @@
+
+	
+    <div id="wrapper">
+
+       
+
+        <div id="page-wrapper">
+
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12">                      
+                        <ol class="breadcrumb">
+                            <li>
+                                <i class="fa fa-home"></i> Dashboard
+                            </li>
+							<div class="pull-right">
+                                 <a class="btn btn-primary btn-sm btn-green"  href="#visualCrawler"><strong>New Definition</strong></a>
+                            </div>
+                           
+                        </ol>
+                    </div>
+					
+                </div>
+                <!-- /.row -->
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        
+                    </div>
+                    <div class="col-lg-6">
+                       
+                    </div>
+                </div>
+				<div class="row">
+                    <div class="col-lg-12">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+							<h3 class="panel-title">Scheduled Executions</h3>
+							<span class="pull-right clickable panel-collapsed"><i class="glyphicon glyphicon-chevron-down"></i></span>
+							</div>
+						    <div class="panel-body scrollY height300" style="display:none;">
+							<p id="Scheduled_Executions_message"></p>
+							<table class="table table-bordered" id="Scheduled_Executions"> 
+							<thead>
+							<tr>
+								
+								<th>Crawler Name</th>
+								<th>Frequency</th>
+								<th>Mode</th>								
+								<th>Respect Robot</th>
+								<th>Start date</th>
+								<th>Start Time</th>
+								<th>Created Date</th>
+								<th>Options</th>
+								
+						    </tr>
+							</thead>
+							<tbody>
+							<tr ng-repeat="schedul in schedule">
+								
+								<td>{{schedul.crawlerName}}</td>
+								<td>
+								
+								<table class="table table-bordered" ng-if="schedul.frequency.type == 'Weekly'">
+								<tbody>
+								<tr>
+								<td><b>Recurrence</b></td>
+								<td>{{schedul.frequency.recurrence}}</td>
+								</tr>
+								<tr><td><b>Type</b></td><td>{{schedul.frequency.type}}</td></tr>
+								<tr>
+								<!--<tr> <td colspan="2"><b>weekDay</b></td></tr>-->
+								
+								<tr>
+								<td colspan="2">
+								<span ng-repeat="weekdays in schedul.frequency.weekDay">{{weekdays}} | </span> 
+								</td>
+								</tr>
+								
+								</tbody>
+								</table>
+								
+								<table class="table table-bordered" ng-if="schedul.frequency.type == 'Daily'">
+								<tbody>
+								<tr>
+								<td><b>Recurrence</b></td>
+								<td>{{schedul.frequency.recurrence}}</td>
+								</tr>
+								<tr><td><b>Type</b></td><td>{{schedul.frequency.type}}</td></tr>
+								<tr>
+								<tr> <td><b>Bypass Flag</b></td><td>{{schedul.frequency.bypassFlag}}</td></tr>						
+								
+								</tbody>
+								</table>
+								
+								<table class="table table-bordered" ng-if="schedul.frequency.type == 'Monthly'">
+								<tbody>
+								<tr>
+								<td><b>Recurrence</b></td>
+								<td>{{schedul.frequency.recurrence}}</td>
+								</tr>
+								<tr><td><b>Type</b></td><td>{{schedul.frequency.type}}</td></tr>
+								<tr>
+								<tr> <td><b>Date Of Month</b></td><td>{{schedul.frequency.dateOfMonth}}</td></tr>						
+								
+								</tbody>
+								</table>
+
+
+									
+								</td>						
+							
+								<td>
+								<table class="table table-bordered">
+								<tbody>
+								<tr ng-repeat="(key, value) in schedul.mode">
+								<td><b>{{key}}</b></td><td>{{value}}</td>
+								</tr>
+						
+								</tbody>
+								</table>
+								
+								
+								</td>
+								<th>{{schedul.respectRobot}}</th>
+								<th>{{schedul.startDate | date: "yyyy-MM-dd" }}</th>
+								<th>{{schedul.startTime + " " + timeZone }}</th>
+								<th>{{schedul.createdDate}}</th>
+								<th><button class="btn btn-primary btn-sm btn-green" ng-click="runScheduleOnDemand(schedul)">On Demand</button></th>
+							</tr>
+							</tbody>
+							
+							</table>
+							</div>
+						</div>
+                    </div>
+					
+					<div class="col-lg-12">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+							<h3 class="panel-title">Current Executions</h3>
+							<span class="pull-right clickable panel-collapsed"><i class="glyphicon glyphicon-chevron-down"></i></span>
+							</div>
+						    <div class="panel-body scrollY height300" style="display:none;>
+							<p id="Current_Executions_message"></p>
+							<table class="table table-bordered" id="Current_Executions"> 
+							<thead>
+							<tr>
+								
+								<th>Crawler Name</th>
+								<th>Duration</th>
+								<th>Status</th>
+								
+						    </tr>
+							</thead>
+							<tbody>
+							<tr ng-repeat="run in running">
+								
+								<td>{{run.crawlerName}}</td>
+								<td>
+								<table class="table table-bordered">
+								<tbody>
+									<tr><td><b>Started</b></td>
+									<td>{{run.duration.startTime }}</td>
+									</tr>									
+								</tbody>
+								</table>								
+								</td>
+								<td>{{run.status}}</td>
+								
+							</tr>
+							</tbody>
+							</table>
+							</div>
+						</div>
+                    </div>
+					
+					<div class="col-lg-12">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+							<h3 class="panel-title">Recently Completed</h3>
+							<span class="pull-right clickable panel-collapsed"><i class="glyphicon glyphicon-chevron-down"></i></span>
+							</div>
+						    <div class="panel-body scrollY height300" style="display:none;>
+							<p id="Recently_Completed_message"></p>
+							<table class="table table-bordered" id="Recently_Completed"> 
+							<thead>
+							<tr>
+								
+								<th>Crawler Name</th>
+								<th>Duration</th>
+								<th>Status</th>
+								
+						    </tr>
+							</thead>
+							<tbody>
+							<tr ng-repeat="succ in success">
+								
+								<td>{{succ.crawlerName}}</td>
+								<td>
+								<table class="table table-bordered">
+								<tbody>
+									<tr><td><b>Started</b></td>
+									<td>{{succ.duration.startTime}}</td>
+									</tr>
+									<tr><td><b>Completed</b></td>
+									<td>{{succ.duration.endTime}}</td>
+									</tr>
+									<tr><td><b>Duration</b></td>
+									<td>{{succ.duration.duration}}</td>
+									</tr>									
+								</tbody>
+								</table>				
+								
+								</td>
+								<td>{{succ.status}}</td>
+								
+							</tr>
+							</tbody>
+							</table>
+							
+							</div>
+						</div>
+                    </div>
+                   
+                </div>
+                
+                <!-- /.row -->
+
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+	
+
+   <!-- Footer -->
+
+  <!-- <div class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container">
+      <p class="navbar-text pull-left">© 2017 Tivo Spider. All rights reserved </p>   
+     
+      
+    
+      <p class="navbar-text pull-right"><a href="#">About Us</a> | <a href="#">Legal</a> | <a href="#">Accessibility</a> |
+	  <a href="#">Privacy Policy</a> | <a href="#">Cookie Policy</a></p>  
+    </div>
+    
+    
+   </div>-->
+               
+    <!-- Footer -->
+	
+<div class="modal fade" id="confirmOnDemand" >
+  <div class="modal-dialog" role="document">
+	<div class="modal-content">
+	  <div class="modal-header alert-success">
+		<h5 class="modal-title">On-demand Confirmation</h5>
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top: -15px;">
+		  <span aria-hidden="true">&times;</span>
+		</button>
+	  </div>
+	  <div class="modal-body">
+		<p class="">
+			<b>Do you want to prioritize selected schedule?</b>
+					
+		</p>
+	  </div>
+	  <div class="modal-footer">
+		
+		<button type="button" class="btn btn-primary btn-sm btn-green" ng-click="confirmOnDemand()" data-dismiss="modal">Ok</button>
+		<button type="button" class="btn btn-primary btn-sm btn-green" data-dismiss="modal">Cancel</button>
+	  </div>
+	</div>
+  </div>
+</div>
+	
+<div class="modal fade" id="successdashboard" >
+  <div class="modal-dialog" role="document">
+	<div class="modal-content">
+	  <div class="modal-header alert-success">
+		<h5 class="modal-title">{{dashboradSuccessTitle}}</h5>
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top: -15px;">
+		  <span aria-hidden="true">&times;</span>
+		</button>
+	  </div>
+	  <div class="modal-body">
+		<p class="">
+			<b>{{dashboradSuccessMsg}} </b>
+					
+		</p>
+	  </div>
+	  <div class="modal-footer">
+		
+		<button type="button" class="btn btn-primary btn-sm btn-green" data-dismiss="modal">Ok</button>
+	  </div>
+	</div>
+  </div>
+</div>

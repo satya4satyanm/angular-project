@@ -1,0 +1,38 @@
+{
+   "manifest_version": 2,
+   "name": "TiVo Web Scraper",
+   "background": {
+      "scripts": [ "src/chromeExtnResources/background.js" ]
+   },
+   "browser_action": {
+      "default_icon": {
+         "19": "src/resources/images/24.png",
+         "38": "src/resources/images/48.png"
+      },
+      "default_title": "TiVo Web Scraper"
+   },
+   "background": {
+        "scripts": ["src/chromeExtnResources/background.js"]
+    },
+   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+   "description": "Tivo scrapper for entertainment",
+   "homepage_url": "https://www.tivo.com",
+   "icons": {
+      "128": "src/resources/images/128.png",
+      "16": "src/resources/images/16.png",
+      "48": "src/resources/images/48.png"
+   },
+   "content_scripts": [{
+        "js": ["src/chromeExtnResources/contentscript.js"],
+        "matches": ["*://*/*"],
+        "all_frames": true
+    }],
+   "permissions": [ "tabs", "http://*/*", "https://*/*", "notifications", "activeTab", "webRequest", "webRequestBlocking", "*://*.example.com/",  "storage", "<all_urls>","webNavigation","notifications","cookies", "background", "contextMenus", "webRequest", "webRequestBlocking", "tabs", "<all_urls>" ],
+      "short_name": "TiVo Web Scraper",
+   "version": "1.0",
+   "externally_connectable": {
+  		"matches": ["*://localhost/*", "*://your.domain.com/*"]
+  	},
+   "key": "roviextn",
+   "web_accessible_resources": [ "/src/resoures/images/24.png", "/src/resources/images/48.png", "/src/resources/imagesthrobber.gif", "src/resources/css/app-style.css", "/src/chromeExtnResources/uiHandler.js","/src/chromeExtnResources/ajaxRequests.js", "/src/chromeExtnResources/uiFunctionHandler.js","/src/chromeExtnResources/uiLoginHandler.js", "/src/vendors/angular/angular.min.js", "/src/vendors/angular/angular-local-storage.min.js", "/src/vendors/jquery/jquery-3.1.1.min.js", "/src/vendors/jquery/jqueryNoconflict.js", "/src/views/vcForm.html", "/src/views/iframe.html", "/src/chrome-app.js", "/core/factories/jsonServices.js", "/src/vendors/alerty.css", "/src/vendors/alerty.js" ]
+}

@@ -1,0 +1,165 @@
+{
+	"visit": "http://www.tbs.com",
+	"matches": {
+		"http://www.tbs.com$": {
+			"links": [
+				{
+					"type": "css selector",
+					"value": "[class^='navitem']",
+					"link": {
+						"type": "css selector",
+						"value": "[itemprop='url']",
+						"attribute": "href"
+					}
+				}
+			]
+		},
+		"http://www.tbs.com/movies/$": {
+			"links": [
+				{
+					"type": "css selector",
+					"value": "[data-content-type='movie']",
+					"id": {
+						"attribute": "data-id"
+					},
+					"link": {
+						"type": "css selector",
+						"value": "[class='icon info'][data-href]",
+						"attribute": "data-href"
+					},
+					"actions": [
+						{
+							"action": "click",
+							"type": "css selector",
+							"value": "[id*='carousel'] [class*='nav-right']"
+						}
+					]
+				}
+			]
+		},
+		"http://www.tbs.com/movies/(.*).html$": {
+			"fields": [
+				{
+					"name": "name",
+					"type": "regex",
+					"value": "class=\"title\" itemprop=\"name\">(?P<name>.*)<"
+				},
+				{
+					"name": "description",
+					"type": "css selector",
+					"value": "[itemprop='description']"
+				},
+				{
+					"name": "duration",
+					"type": "xpath",
+					"value": "//*[@itemprop=\"video\"]/span[@itemprop=\"duration\"]"
+				},
+				{
+					"name": "availableExpireDate",
+					"type": "css selector",
+					"value": "[itemprop='startDate']"
+				},
+				{
+					"name": "cast",
+					"type": "css selector",
+					"value": "[itemprop='actor']",
+					"multiple": true,
+					"fields": [
+						{
+							"name": "name",
+							"type": "css selector",
+							"value": "[itemprop='name']",
+							"attribute": "innerHTML"
+						}
+					]
+				},
+				{
+					"name": "lang",
+					"type": "regex",
+					"value": "lang=\"(?P<lang>.{2})\""
+				}
+			]
+		},
+		"http://www.tbs.com/shows/$": {
+			"links": [
+				{
+					"type": "css selector",
+					"value": "[data-content-type='show']",
+					"id": {
+						"attribute": "data-id"
+					},
+					"link": {
+						"type": "css selector",
+						"value": "[class='icon info'][data-href]",
+						"attribute": "data-href"
+					},
+					"actions": [
+						{
+							"action": "click",
+							"type": "css selector",
+							"value": "[id*='carousel'] [class*='nav-right']"
+						}
+					]
+				}
+			]
+		},
+		"http://www.tbs.com/shows/(.*).html$": {
+			"fields": [
+				{
+					"name": "episodeName",
+					"type": "css selector",
+					"value": "[itemprop='name'][class='title']"
+				},
+				{
+					"name": "description",
+					"type": "css selector",
+					"value": "[class='episode-info'] > div > div > p"
+				},
+				{
+					"name": "name",
+					"type": "css selector",
+					"value": "[itemprop='partOfTVSeries'] [itemprop='name'][class='title']"
+				},
+				{
+					"name": "seasonNumber",
+					"type": "css selector",
+					"value": "[itemprop='seasonNumber']"
+				},
+				{
+					"name": "episodeNumber",
+					"type": "css selector",
+					"value": "[itemprop='episodeNumber']"
+				},
+				{
+					"name": "duration",
+					"type": "css selector",
+					"value": "[itemprop='description'] [class*='formatdurationsecs']"
+				},
+				{
+					"name": "availableExpireDate",
+					"type": "css selector",
+					"value": "[itemprop='description'] [class='availableexpire']"
+				},
+				{
+					"name": "cast",
+					"type": "css selector",
+					"value": "[itemprop='actor']",
+					"multiple": true,
+					"fields": [
+						{
+							"name": "name",
+							"type": "css selector",
+							"value": "[itemprop='name']",
+							"attribute": "innerHTML"
+						}
+					]
+				},
+				{
+					"name": "lang",
+					"type": "regex",
+					"value": "lang=\"(?P<lang>.{2})\""
+				}
+			]
+		}
+	}
+}

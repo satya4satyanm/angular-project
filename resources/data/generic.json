@@ -1,0 +1,74 @@
+{
+  "definitionId": "",
+  "definitionName": "",
+  "createdBy": "",
+  "isApproved": "",
+  "proxyIP": "",
+  "validate": "",
+  "visit": "",
+  "credential": {
+    "password": "",
+    "userName": ""
+  },
+  "assets": [
+    {
+      "type": "",
+      "id": "",
+      "matches": [
+        {
+          "urlPattern": "",
+          "links": [
+            {
+              "attribute": "",
+              "value": "",
+              "type": "",
+              "id": "",
+              "actions": [
+                {
+                  "action": "",
+                  "type": "",
+                  "value": ""
+                }
+              ]
+            }
+          ],
+          "fields": [
+            {
+              "attribute": "",
+              "name": "",
+              "type": "",
+              "id": null,
+              "value": "",
+              "multiple": "",
+              "fields": [
+                {
+                  "name": "",
+                  "attribute": "",
+                  "type": "",
+                  "id": "",
+                  "value": "",
+                  "function": {
+                    "name": "",
+                    "multiOut": "",
+                    "params": {
+                      "param1": "",
+                      "param2": ""
+                    },
+                    "fields": [
+                      {
+                        "type": "",
+                        "Id": "",
+                        "value": "",
+                        "name": ""
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

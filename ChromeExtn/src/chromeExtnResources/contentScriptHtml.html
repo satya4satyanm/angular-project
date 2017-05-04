@@ -1,0 +1,100 @@
+<input id="toggle1" type="checkbox" checked=""><label id="l1" for="toggle1"><img src="' + extensionLogo + '"/></label>
+<div id="collapse-right">
+<div id="wizard" class="swMain">
+   <ul class="anchor" style="margin: 0;padding: 0;">
+      <li id="th1" class="tabs selected" rel="1" onclick="changeTab(1)">Configuration</li>
+      <li id="th2" class="tabs" rel="2" onclick="changeTab(2)">Validation</li>
+      <li id="th3" class="tabs" rel="3" onclick="changeTab(3)">Extension</li>
+      <li id="th4" class="tabs" rel="4" onclick="changeTab(4)">Login</li>
+   </ul>
+   <div class="stepContainer">
+      <div id="step-1-c" class="content" style="display: block;height: 530px;">
+         <h2 class="StepTitle"></h2>
+         <div id="cntnr">
+            <button class="ok" id="start">Start Mapping</button>
+            <div id="div_Scheme" style="display:none">
+               Asset Type:
+               <select id="assetType" class="assetType">
+                  <option value="select">Select Asset Type</option>
+               </select>
+               <button class="ok" id="addAsset" value="Add Asset">Add Asset</button>
+            </div>
+            <div id="assetTypeContainer" style="display:none"></div>
+            <div id="assetSSContainer" class="assetSSContainer" style="display:none">
+              <div id="assettypebtn"> </div>
+               <div id="subSessionContainer" style="display:none">
+                  <div id="subsessionbtn"> </div>
+                  <div id="subSessionContent" class="subSessionContent"> </div>
+               </div>
+               <br/>
+               <div id="devMode" style="display:none;">
+                  <br/>
+                  <select style="display:block" id="linksOrFieldsDropdown">
+                     <option value="links">Links</option>
+                     <option value="fields">Fields</option>
+                     <option value="images">Images</option>
+                  </select>
+                  <div id="div_Scheme1">
+                     <span class="formLabel">Attribute Name:</span>
+                     <select id="assetSubType" class="assetSubType">
+                        <option value="select">Select Attribute Name</option>
+                     </select>
+                     <br/>
+                  </div>
+                  <div id="div_assetId" style="display:none"><button class="btn-blue" id="viewElementSource" style="margin-left:105px;">View Element Source</button><span class="formLabel">Attribute:</span> <input type="text" id="attributeName" class="actionElement"> <br><span class="formLabel">Value:</span><input type="text" id="attributeValue" class="actionElement"><br></div>
+                  <div style="display:none">
+                     <span class="formLabel">Type of Selecter:</span>
+                     <select id="selectorType">
+                        <option value="css selector">CSS Selector</option>
+                        <option value="XPath">XPath</option>
+                        <option value="RegExp">RegExp</option>
+                     </select>
+                     <br/>
+                  </div>
+                  <span class="formLabel">Selector:</span><input type="text" id="selectorVal"/> <br/>
+                  <div style="display:none">Attribute: <select id="attributeTxt"></select></div>
+                  <span class="formLabel">Action Type:</span>
+                  <select id="actionType">
+                     <option value="select">Select Action Type</option>
+                     <option value="click">Click</option>
+                     <option value="scroll">Scroll</option>
+                  </select>
+                  </br><span class="formLabel">Action Element:</span><input type="text" id="actionElem" class="actionElement"/><br/>
+                  <div id="functionWraper">
+                     <span class="formLabel">Function:</span>
+                     <select class="fnDropdown" id="functionType">
+                        <option value="0">Select a function</option>
+                        <option value="1">substring</option>
+                        <option value="2">escape_character</option>
+                        <option value="3">split</option>
+                        <option value="4">current_timestamp</option>
+                        <option value="5">timeZone_to_string</option>
+                     </select>
+                  </div>
+                  <div id="functionBlock" style="position: absolute; bottom: 0; left: 0; padding: 10px;width: 100%; text-align: right; box-sizing: border-box;"> </div>
+                  <div style="text-align:left;"> <span id="ok">Add Attribute</span> </div>
+               </div>
+            </div>
+            <div style="position: absolute; bottom:10px; text-align: right; width:94%; display:none" id="subSessionControls"> <button id="subSessionDone" class="done">Done</button> </div>
+            <br/>
+            <div id="fieldsError" style="display:none; color:red;">Selected combination is already defined in schema.</div>
+         </div>
+      </div>
+      <div id="step-2-c" class="content" style="display: none;max-height: 560px;">
+         <h2 class="StepTitle"></h2>
+         <div id="userModalPopup1">
+            <div class="modal-body" style="position:relative; overflow: scroll;overflow-x: hidden;height: 530px;"></div>
+         </div>
+      </div>
+      <div id="step-3-c" class="content" style="display: none;height:530px;">
+         <h2 class="StepTitle"></h2>
+         <iframe id="roviTiVoApp" style="width: 100%; height: 530px; border: 0;" src="' + src + '"></iframe>
+      </div>
+      <div id="step-4-c" class="content" style="display: none;height:530px;">
+         <div class="loginActionElement">Username: <input type="text" id="loginActionElemU"/></div>
+         <div class="loginActionElement"> Password: <input type="text" id="loginActionElemP"/></div>
+         <div class="loginActionElement"> Login Buttn: <input type="text" id="loginActionBtn"/> </div>
+         <div id="loginBlock" style="position: absolute; bottom: 0px; left: 0px; padding: 10px; width: 100%; text-align: right; box-sizing: border-box; outline: none;"> <button class="loginOk" id="loginTrackBtn">Track Login</button> </div>
+      </div>
+   </div>
+</div>

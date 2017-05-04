@@ -1,0 +1,158 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome | Login</title>
+    <link rel="stylesheet" href="vendors/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="vendors/bootstrap/css/datatables.bootstrap.min.css" />
+    <link rel="stylesheet" href="vendors/font-awesome-4.7.0/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="resources/css/login.css">
+	<link rel="stylesheet" href="resources/css/style.css">
+	<link rel="stylesheet" href="resources/css/dashboard.css">
+	<link rel="stylesheet" href="resources/css/left-sidebar-fixed.css">
+  </head>
+  <body ng-app="roviVCapp" style="background-image:url(resources/images/pattern.png);">
+   <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" ng-controller="navigationController">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+				<a id="logo" class="navbar-brand font-bold">
+                    <img src="resources/images/tivo_logo.jpg" alt="" style="max-height:20px;">
+                    Tivo Spider
+                </a>
+
+            </div>
+            <!-- Top Menu Items -->
+            <ul class="nav navbar-right top-nav" ng-if="localUserNameValue">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">{{ localUserNameValue }} <b class="caret"></b> <i class="fa fa-user"></i>  </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a ng-click="logOut()"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                        </li>
+                    </ul>
+                </li>
+
+            </ul>
+            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse" ng-if="localUserNameValue">
+                <ul class="nav navbar-nav side-nav font-bold">
+                    <li class="margin-top-10 {{navDashboard}}">
+                        <a href="#dashboard"> Dashboard</a>
+                    </li>
+                    <li class="{{navCrawlerMange}}">
+                        <a href="#crawlerManger">Crawler Management</a>
+                    </li>
+                    <li>
+                        <a >Reports </a>
+                    </li>
+                    <li>
+                        <a>Help</a>
+                    </li>
+					<li>
+                        <a>Support</a>
+                    </li>
+					<li>
+                        <a>Log Out</a>
+                    </li>
+                   <li class="nav-note">
+				    Note:
+					<p class="red-color" id="noExtn">
+					<b>You are missing the required
+					TiVo Visual Crawler chrome
+					extension. Please install before
+					proceed.</b><br/><br/>
+					<button class="btn btn-primary btn-lg btn-danger" onclick="window.location.href='tivo-extension/ChromeExtn.zip'"><strong>Install</strong></button>
+				   </p>
+				   <p class="green-color" id="extn" style="display: none;">
+				   <small><b>Chrome extension is installed</b></small>
+				   </p>
+				   </li>
+                </ul>
+
+            </div>
+            <!-- /.navbar-collapse -->
+        </nav>
+
+
+	<div ng-view></div>
+
+
+<div class="modal fade" id="warningNoExtn" >
+  <div class="modal-dialog" role="document">
+	<div class="modal-content">
+	  <div class="modal-header alert-danger">
+		<h5 class="modal-title">Crawler chrome extension Warning</h5>
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top: -15px;">
+		  <span aria-hidden="true">&times;</span>
+		</button>
+	  </div>
+	  <div class="modal-body">
+		<p class="red-color">
+			<b>You are missing the required
+			TiVo Visual Crawler chrome
+			extension. Please install before
+			proceed.Please Use Install button to get TiVo Visual Crawler chrome
+			extension. </b>
+
+		</p>
+	  </div>
+	  <div class="modal-footer">
+
+		<button type="button" class="btn btn-primary btn-sm btn-green" data-dismiss="modal">Ok</button>
+	  </div>
+	</div>
+  </div>
+</div>
+
+
+
+<script type="text/javascript" src="vendors/jquery/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="vendors/jquery/jquery.dataTables.min.js"></script>
+
+<script type="text/javascript" src="vendors/bootstrap/js/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="vendors/angular/angular.min.js"></script>
+<script type="text/javascript" src="vendors/angular/angular.treeview.min.js"></script>
+<script type="text/javascript" src="vendors/angular/angular-animate.min.js"></script>
+<script type="text/javascript" src="vendors/angular/angular-cookies.min.js"></script>
+<script type="text/javascript" src="vendors/angular/angular-resource.min.js"></script>
+<script type="text/javascript" src="vendors/angular/angular-route.min.js"></script>
+<script type="text/javascript" src="vendors/angular/angular-local-storage.min.js"></script>
+<script type="text/javascript" src="vendors/angular/angular-sanitize.min.js"></script>
+<script type="text/javascript" src="vendors/angular/angular-touch.min.js"></script>
+<script type="text/javascript" src="vendors/angular/angular-datatables.min.js"></script>
+
+
+<!--script type="text/javascript" src="core/controllers/loginController.js"></script>
+<script type="text/javascript" src="core/controllers/dashboardController.js"></script>
+<script type="text/javascript" src="core/controllers/visualCrawlerController.js"></script>
+<script type="text/javascript" src="core/controllers/crawlerMangementController.js"></script>
+<script type="text/javascript" src="core/controllers/navigationController.js"></script>
+<script type="text/javascript" src="core/controllers/scheduleController.js"></script>
+<script type="text/javascript" src="core/factories/apiService.js"></script>
+<script type="text/javascript" src="core/factories/jsonService.js"></script>
+<script type="text/javascript" src="app.js"></script>
+<script type="text/javascript" src="resources/js/index.js"></script-->
+
+
+<script type="text/javascript" src="dist/js/app.js"></script>
+
+
+
+  </body>
+</html>

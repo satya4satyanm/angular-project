@@ -1,0 +1,73 @@
+{
+     "definitionId": "",
+     "definitionName": "",
+     "createdBy": "",
+     "isApproved": "",
+     "proxyIP": "",
+     "validate": "",
+     "visit": "",
+     "credential": {
+          "password": "",
+          "userName": ""
+     },
+     "matches": [
+          {
+               "urlPattern": "",
+               "links": [
+                    {
+                         "attribute": "",
+                         "value": "",
+                         "type": "",
+                         "id": "",
+                         "actions": [
+                              {
+                                   "action": "",
+                                   "type": "",
+                                   "value": ""
+                              }
+                         ]
+                    }
+               ],
+               "assets": [
+                    {
+						 "urlPattern": "",
+                         "assetType": "",
+                         "assetId": "",
+                         "fields": {
+                              "attribute": "",
+                              "name": "",
+                              "type": "",
+                              "id": null,
+                              "value": "",
+                              "multiple": "",
+                              "fields": [
+                                   {
+                                        "name": "",
+                                        "attribute": "",
+                                        "type": "",
+                                        "id": "",
+                                        "value": "",
+                                        "function": {
+                                             "name": "",
+                                             "multiOut": "",
+                                             "parameters": {
+                                                  "string": "",
+                                                  "operator": ""
+                                             },
+                                             "fields": [
+                                                  {
+                                                       "type": "",
+                                                       "Id": "",
+                                                       "value": "",
+                                                       "name": ""
+                                                  }
+                                             ]
+                                        }
+                                   }
+                              ]
+                         }
+                    }
+               ]
+          }
+     ]
+}

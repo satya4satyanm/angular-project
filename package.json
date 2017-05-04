@@ -1,0 +1,42 @@
+{
+  "name": "roviVCapp",
+  "version": "1.0.0",
+  "description": "roviVCapp sample test",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "ws --port=3000"
+  },
+  "author": "Satyanarayan Mishra",
+  "devDependencies": {
+    "angular": "^1.6.4",
+    "angular-animate": "^1.6.4",
+    "angular-mocks": "^1.6.4",
+    "angular-route": "^1.6.4",
+    "bootstrap": "^3.3.7",
+    "grunt": "^1.0.1",
+    "grunt-bootstrap": "^0.1.0",
+    "grunt-cli": "^1.2.0",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-cssmin": "^2.0.0",
+    "grunt-contrib-sass": "^1.0.0",
+    "grunt-contrib-uglify": "^2.3.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "jasmine": "^2.5.3",
+    "jasmine-core": "^2.5.2",
+    "jquery": "^3.2.1",
+    "jshint": "^2.9.4",
+    "karma": "^1.6.0",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-jasmine": "^1.1.0",
+    "karma-phantomjs-launcher": "^1.0.4",
+    "local-web-server": "^1.2.7",
+    "phantomjs-prebuilt": "^2.1.4",
+    "ruby": "^0.6.1",
+    "sass": "^0.5.0",
+    "underscore": "^1.8.3"
+  },
+  "dependencies": {
+    "format-error": "^1.0.0"
+  }
+}

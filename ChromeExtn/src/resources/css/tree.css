@@ -1,0 +1,126 @@
+.css-treeview ul,
+.css-treeview li
+{
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+.css-treeview li
+{
+
+}
+
+h3 {
+	display: inline;
+}
+
+.css-treeview input[type=checkbox]
+{
+	position: absolute;
+	opacity: 0;
+	display: none;
+}
+
+.css-treeview
+{
+	font: normal 11px "Segoe UI", Arial, Sans-serif;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	user-select: none;
+}
+
+.css-treeview a
+{
+	color: #00f;
+	text-decoration: none;
+}
+
+.css-treeview a:hover
+{
+	text-decoration: underline;
+}
+
+.css-treeview input + label + ul, .css-treeview input + label + span + ul
+{
+	margin: 0 0 0 22px;
+}
+
+.css-treeview input + label + ul, .css-treeview input + label + span + ul
+{
+	display: block; /*none*/
+}
+
+.css-treeview label,
+.css-treeview label::before
+{
+	cursor: pointer;
+}
+
+.css-treeview input:disabled + label
+{
+	cursor: default;
+	opacity: .6;
+}
+
+.css-treeview input:checked:not(:disabled) + label + ul, .css-treeview input:checked:not(:disabled) + label + span + ul
+{
+	display: block;
+}
+
+.css-treeview label
+/*,.css-treeview label::before*/
+{
+	background: url("../images/icons.png") no-repeat;
+}
+
+.css-treeview label,
+.css-treeview a,
+.css-treeview label::before
+{
+	display: inline-block;
+	height: 16px;
+	line-height: 16px;,
+	vertical-align: middle;
+}
+
+.css-treeview label
+{
+	background-position: 1px 0px;
+	margin-bottom: 18px;
+}
+
+.css-treeview label::before
+{
+	content: "";
+	width: 0;
+	margin: 0 22px 7px 0;
+	vertical-align: middle;
+	/*background-position: 0 -32px;*/
+}
+
+.css-treeview input:checked + label::before
+{
+	/*background-position: 0 -16px;*/
+}
+
+/* webkit adjacent element selector bugfix */
+@media screen and (-webkit-min-device-pixel-ratio:0)
+{
+	.css-treeview
+	{
+		-webkit-animation: webkit-adjacent-element-selector-bugfix infinite 1s;
+	}
+
+	@-webkit-keyframes webkit-adjacent-element-selector-bugfix
+	{
+		from
+		{
+			padding: 0;
+		}
+		to
+		{
+			padding: 0;
+		}
+	}
+}
